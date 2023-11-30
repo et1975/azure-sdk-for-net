@@ -15,11 +15,11 @@ namespace Azure.Core.Pipeline
         /// <summary>
         /// Initializes an instance of <see cref="HttpPipelineTransportOptions"/>.
         /// </summary>
-        public HttpPipelineTransportOptions()
+        public HttpPipelineTransportOptions(IList<X509Certificate2> clientCertificates = new())
         {
             // suppress false positive of NetAnalyzers: error CA1416: This call site is reachable on all platforms. 'X509Certificate2' is unsupported on: 'browser'.
 #pragma warning disable CA1416
-            ClientCertificates = new List<X509Certificate2>();
+            ClientCertificates = clientCertificates;
 #pragma warning restore CA1416
         }
 

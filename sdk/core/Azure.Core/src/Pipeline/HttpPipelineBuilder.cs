@@ -41,7 +41,8 @@ namespace Azure.Core.Pipeline
             var pipelineOptions = new HttpPipelineOptions(options) { ResponseClassifier = responseClassifier };
             ((List<HttpPipelinePolicy>)pipelineOptions.PerCallPolicies).AddRange(perCallPolicies);
             ((List<HttpPipelinePolicy>)pipelineOptions.PerRetryPolicies).AddRange(perRetryPolicies);
-            var result = BuildInternal(pipelineOptions, null);
+            var result = BuildInternal(pipelineOptions,
+                                       options.ClientCertificates.Any() ? new HttpPipelineTransportOptions(options.ClientCertificates) : null);
 
             return new HttpPipeline(result.Transport, result.PerCallIndex, result.PerRetryIndex, result.Policies, result.Classifier);
         }

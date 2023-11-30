@@ -4,6 +4,8 @@
 using System;
 using Azure.Core;
 using Azure.Core.Serialization;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Azure.Messaging.EventGrid
 {
@@ -35,6 +37,11 @@ namespace Azure.Messaging.EventGrid
         /// making requests.
         /// </summary>
         internal ServiceVersion Version { get; }
+
+        /// <summary>
+        /// Gets the list of client certificates used for authentication.
+        /// </summary>
+        public IList<X509Certificate2> ClientCertificates { get; } = new List<X509Certificate2>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventGridPublisherClientOptions"/>
